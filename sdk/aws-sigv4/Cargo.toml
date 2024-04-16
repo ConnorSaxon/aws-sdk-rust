@@ -78,8 +78,9 @@ package = "http"
 version = "1"
 optional = true
 
+# editing version was (0.11)
 [dependencies.p256]
-version = "0.11"
+version = "0.10.1"
 features = ["ecdsa"]
 optional = true
 
