@@ -44,7 +44,7 @@ pub fn generate_signing_key(access_key: &str, secret_access_key: &str) -> impl A
     // Capacity is the access key length plus the counter byte
     let mut kdf_context = Zeroizing::new(Vec::with_capacity(access_key.len() + 1));
     let mut counter = Zeroizing::new(1u8);
-    let key = loop {
+    let key: SigningKey = loop {
         write!(kdf_context, "{access_key}").unwrap();
         kdf_context.push(*counter);
 
@@ -72,7 +72,7 @@ pub fn generate_signing_key(access_key: &str, secret_access_key: &str) -> impl A
         //     let d = Zeroizing::new(pk.to_be_bytes());
         //     break SigningKey::from_bytes(d.as_ref()).unwrap();
         // }
-
+        *counter += 1;
         // *counter = counter
         //     .checked_add(1)
             // .expect("counter will never get to 255");
