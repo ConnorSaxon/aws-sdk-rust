@@ -73,8 +73,8 @@ pub fn generate_signing_key(access_key: &str, secret_access_key: &str) -> impl A
         //     break SigningKey::from_bytes(d.as_ref()).unwrap();
         // }
 
-        *counter = counter
-            .checked_add(1)
+        // *counter = counter
+        //     .checked_add(1)
             // .expect("counter will never get to 255");
     };
 
