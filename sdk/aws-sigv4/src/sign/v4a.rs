@@ -65,17 +65,17 @@ pub fn generate_signing_key(access_key: &str, secret_access_key: &str) -> impl A
 
         // It would be more secure for this to be a constant time comparison, but because this
         // is for client usage, that's not as big a deal.
-        if k0 <= *BIG_N_MINUS_2 {
-            let pk = k0
-                .checked_add(&U256::ONE)
-                .expect("k0 is always less than U256::MAX");
-            let d = Zeroizing::new(pk.to_be_bytes());
-            break SigningKey::from_bytes(d.as_ref()).unwrap();
-        }
+        // if k0 <= *BIG_N_MINUS_2 {
+        //     let pk = k0
+        //         .checked_add(&U256::ONE)
+        //         .expect("k0 is always less than U256::MAX");
+        //     let d = Zeroizing::new(pk.to_be_bytes());
+        //     break SigningKey::from_bytes(d.as_ref()).unwrap();
+        // }
 
         *counter = counter
             .checked_add(1)
-            .expect("counter will never get to 255");
+            // .expect("counter will never get to 255");
     };
 
     key.to_bytes()
